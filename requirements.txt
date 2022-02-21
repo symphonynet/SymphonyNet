@@ -1,0 +1,11 @@
+torch==1.7.1
+pytorch-fast-transformers==0.4.0
+fairseq==0.10.2
+tensorboardX
+six
+more_itertools
+p_tqdm
+miditoolkit
+chorder
+scipy
+matplotlib
