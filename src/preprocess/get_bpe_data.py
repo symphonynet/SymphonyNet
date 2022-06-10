@@ -6,7 +6,6 @@ import subprocess#, multiprocessing
 from functools import partial
 from p_tqdm import p_uimap
 RATIO = 4
-#SENTINEL = " Mw RZ TZ YZ"
 MERGE_CNT = 700
 CHAR_CNT = 128
 WORKERS = 32
@@ -135,15 +134,15 @@ def count_single_mulpies(toks, ratio=RATIO):
 
     return chord_dict, l_toks // ratio
 
+
 if __name__ == '__main__':
-    # --------- slice multi-track ----
     start_time = time.time()
 
     paragraphs = []
 
-    raw_data_path = '../../data/preprocessed/linear_4096_chord.txt'
-    merged_data_path = '../../data/preprocessed/linear_4096_chord_bpe.txt'
-    output_dir = 'bpe_res/'
+    raw_data_path = 'data/preprocessed/raw_corpus.txt'
+    merged_data_path = 'data/preprocessed/raw_corpus_bpe.txt'
+    output_dir = 'data/bpe_res/'
     os.makedirs(output_dir, exist_ok=True)
     raw_data = []
     with open(raw_data_path, 'r') as f:
@@ -163,7 +162,7 @@ if __name__ == '__main__':
             f.write(''.join(k) + ' ' + str(v) + '\n')
     with open(output_dir+'codes.txt', 'w') as stdout:
         with open(output_dir+'merged_voc_list.txt', 'w') as stderr:
-            subprocess.run(['./fast', 'learnbpe', f'{MERGE_CNT}', output_dir+'ori_voc_cnt.txt'], stdout=stdout, stderr=stderr)
+            subprocess.run(['./music_bpe_exec', 'learnbpe', f'{MERGE_CNT}', output_dir+'ori_voc_cnt.txt'], stdout=stdout, stderr=stderr)
     print(f'learnBPE finished, time elapsed:　{time.time() - start_time}')
     start_time = time.time()
 

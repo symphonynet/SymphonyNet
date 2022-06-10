@@ -1,0 +1,6 @@
+!midis/
+!model_spec/linear_4096_chord_bpe_hardloss1/vocabs/
+!model_spec/linear_4096_chord_bpe_hardloss1/bin/dict.txt
+!.gitignore
+!bpe_res/codes.txt
+*

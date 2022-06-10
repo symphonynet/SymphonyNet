@@ -141,10 +141,10 @@ def mp_handler(raw_data, str2int, output_file, ratio, sample_len_max, num_worker
         with open('vocab.sh', 'a') as f:
             f.write(f'MAX_REL_POS={max_rel_pos+5}\n')
             f.write(f'MAX_MEA_POS={maxl*3+5}\n')
-        with open('mea_cnt_dis.txt', 'w') as f:
+        with open('src/fairseq/mea_cnt_dis.txt', 'w') as f:
             for k, v in sorted(mea_cnt_dis.items()):
                 f.write(f'{k*10} {v}\n')
-        with open('mea_len_dis.txt', 'w') as f:
+        with open('src/fairseq/mea_len_dis.txt', 'w') as f:
             for k, v in sorted(mea_len_dis.items()):
                 f.write(f'{k*10} {v}\n')
 
@@ -158,6 +158,7 @@ def mp_handler(raw_data, str2int, output_file, ratio, sample_len_max, num_worker
 
     print("write binary finished, write time elapsed {:.2f} s".format(time.time() - begin_time))
 
+
 def makevocabs(line, ratio):
     toks = line.split()
     ret_sets = []
@@ -166,10 +167,11 @@ def makevocabs(line, ratio):
         ret_sets.append(set(sub_toks))
     return ret_sets
 
+
 if __name__ == '__main__':
     # --------- slice multi-track ----
     SEED, SAMPLE_LEN_MAX, totpiece, RATIO, bpe, map_meta_to_pad = None, None, None, None, None, None
-    print('config: ')
+    print('config.sh: ')
     with open('config.sh', 'r') as f:
         for line in f:
             line = line.strip()
@@ -198,11 +200,12 @@ if __name__ == '__main__':
     assert RATIO is not None, "missing arg: RATIO"
     assert bpe is not None, "missing arg: BPE"
     assert map_meta_to_pad is not None, "missing arg: IGNORE_META_LOSS"
-    
+
     bpe = "" if bpe == 0 else "_bpe"
+    raw_corpus = f'raw_corpus{bpe}'
     model_name = f"linear_{SAMPLE_LEN_MAX}_chord{bpe}"
-    raw_data_path = f'../../data/preprocessed/{model_name}.txt'
-    output_dir = f'../../data/model_spec/{model_name}_hardloss{map_meta_to_pad}/'
+    raw_data_path = f'data/preprocessed/{raw_corpus}.txt'
+    output_dir = f'data/model_spec/{model_name}_hardloss{map_meta_to_pad}/'
     
     start_time = time.time()
     raw_data = []
