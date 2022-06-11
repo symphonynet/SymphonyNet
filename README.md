@@ -54,7 +54,7 @@ vocabularies` mentioned in the paper.
 - Put your checkpoint file or [download our pretrained model](https://drive.google.com/file/d/1xpkj_qN4MdLRkBdCXmfGjuWWjnTN1Og0/view?usp=sharing) into `ckpt/`
 - Run `python3 src/fairseq/gen_batch.py test.mid 5 0 1` to generate one symphony MIDI conditioned on the first 5 measures of test.mid, with no constraints of chord progression.
 - Or replace `test.mid` with your own prime MIDI and set how many measures of chords from the prime MIDI you may want to keep.
-- We provide a Google Colab file `play_symphonynet.ipynb`, where you could follow the generation guide. 
+- We provide a [Google Colab file](https://colab.research.google.com/github/symphonynet/SymphonyNet/blob/main/play_symphonynet.ipynb) `play_symphonynet.ipynb`, where you could follow the generation guide. 
 
 ## License
 SymphonyNet is released under the MIT license
