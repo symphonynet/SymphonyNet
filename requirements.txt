@@ -1,5 +1,9 @@
-torch==1.7.1
-fairseq==0.10.2
+torch==1.12.0
+fairseq==0.12.2
+setuptools==49.6.0
+cython
+numpy
+more-itertools
 tensorboardX
 six
 more_itertools
@@ -9,3 +13,5 @@ chorder
 scipy
 matplotlib
 pytorch-fast-transformers==0.4.0
+pathlib
+ruamel-yaml
