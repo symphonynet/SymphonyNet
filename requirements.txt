@@ -4,6 +4,7 @@ setuptools==49.6.0
 cython
 numpy==1.21
 # daal==2021.4.0
+jedi==0.18.1
 more-itertools
 tensorboardX
 six
