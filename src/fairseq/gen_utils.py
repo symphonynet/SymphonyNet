@@ -148,7 +148,9 @@ def get_next_chord(ori):
         return ori
 
 def get_next(model, p, memory, has_prime = False):
-    pr = torch.from_numpy(np.array(p))[None, None, :].cuda()
+    # TODO: make this a flag of some sort?
+    # pr = torch.from_numpy(np.array(p))[None, None, :].cuda()
+    pr = torch.from_numpy(np.array(p))[None, None, :]
 
     (e,d,t,ins), memory = model(src_tokens=pr, src_lengths=memory)
     e, d, t, ins = e[0,:], d[0,:], t[0,:], ins[0,:]

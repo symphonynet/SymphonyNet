@@ -15,14 +15,15 @@ music_dict.load_vocabs_bpe(DATA_VOC_DIR, 'data/bpe_res/' if BPE == '_bpe' else N
 
 
 from fairseq.models import FairseqLanguageModel
-custom_lm = FairseqLanguageModel.from_pretrained('.', 
-    checkpoint_file=f'ckpt/checkpoint_last_{CHECKPOINT_SUFFIX}.pt', 
-    data_name_or_path=DATA_BIN_DIR, 
+custom_lm = FairseqLanguageModel.from_pretrained('.',
+    checkpoint_file=f'ckpt/checkpoint_last_{CHECKPOINT_SUFFIX}.pt',
+    data_name_or_path=DATA_BIN_DIR,
     user_dir="src/fairseq/linear_transformer_inference")
 print(f'Generation using model: {CHECKPOINT_SUFFIX}')
 
 m = custom_lm.models[0]
-m.cuda()
+# TODO: make this a flag of some sort?
+# m.cuda()
 m.eval()
 
 
@@ -51,6 +52,7 @@ if __name__ == '__main__':
         trk_ins_map = get_trk_ins_map(generated, ins_logits)
         note_seq = get_note_seq(generated, trk_ins_map)
         #print(f'{len(note_seq)} notes generated.')
-        #print(note_seq) 
-        timestamp = time.strftime("%m-%d_%H-%M-%S", time.localtime()) 
-        note_seq_to_midi_file(note_seq, f'{GEN_DIR}{midi_name}_prime{max_measure_cnt}_chord{max_chord_measure_cnt}_{timestamp}.mid')
+        #print(note_seq)
+        timestamp = time.strftime("%m-%d_%H-%M-%S", time.localtime())
+        # note_seq_to_midi_file(note_seq, f'{GEN_DIR}{midi_name}_prime{max_measure_cnt}_chord{max_chord_measure_cnt}_{timestamp}.mid')
+        note_seq_to_midi_file(note_seq, f'output.mid')
