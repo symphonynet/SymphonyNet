@@ -2,7 +2,7 @@ torch==1.12.1
 fairseq==0.12.2
 setuptools==49.6.0
 cython
-numpy==1.21
+numpy==1.23.1
 # daal==2021.4.0
 jedi==0.18.1
 more-itertools
@@ -17,3 +17,4 @@ matplotlib
 pytorch-fast-transformers==0.4.0
 pathlib
 ruamel-yaml
+pycocotools

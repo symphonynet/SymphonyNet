@@ -22,6 +22,12 @@ test_run:
 		python3 src/fairseq/gen_batch.py test.mid 5 0 1
 
 ####################################################
+train:
+	ls -alFh data/midis
+	python3 src/preprocess/preprocess_midi.py
+#	python3 src/preprocess/get_bpe_data.py
+	python3 src/fairseq/make_data.py
+	sh train_linear_chord.sh
 
 docker:
 	docker build . -t symphonynet

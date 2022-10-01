@@ -31,7 +31,6 @@ GEN_DIR = f'generated/{CHECKPOINT_SUFFIX}/'
 os.makedirs(GEN_DIR, exist_ok=True)
 
 
-
 if __name__ == '__main__':
     if len(sys.argv) != 5:
         print('usage: python src/fairseq/gen_batch.py <prime_midi_file> <prime_measure_count> <prime_chord_count> <gen_count>')
@@ -52,7 +51,7 @@ if __name__ == '__main__':
         trk_ins_map = get_trk_ins_map(generated, ins_logits)
         note_seq = get_note_seq(generated, trk_ins_map)
         #print(f'{len(note_seq)} notes generated.')
-        #print(note_seq)
-        timestamp = time.strftime("%m-%d_%H-%M-%S", time.localtime())
+        #print(note_seq) 
+        timestamp = time.strftime("%m-%d_%H-%M-%S", time.localtime()) 
         # note_seq_to_midi_file(note_seq, f'{GEN_DIR}{midi_name}_prime{max_measure_cnt}_chord{max_chord_measure_cnt}_{timestamp}.mid')
         note_seq_to_midi_file(note_seq, f'output.mid')
