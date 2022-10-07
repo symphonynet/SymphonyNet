@@ -149,10 +149,10 @@ def get_next_chord(ori):
 
 def get_next(model, p, memory, has_prime = False):
     # TODO: make this a flag of some sort?
-    pr = torch.from_numpy(np.array(p))[None, None, :]
-
     if torch.cuda.is_available():
         pr = torch.from_numpy(np.array(p))[None, None, :].cuda()
+    else:
+        pr = torch.from_numpy(np.array(p))[None, None, :]
 
     (e,d,t,ins), memory = model(src_tokens=pr, src_lengths=memory)
     e, d, t, ins = e[0,:], d[0,:], t[0,:], ins[0,:]
