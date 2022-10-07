@@ -1,4 +1,5 @@
 import os, sys, time
+import torch
 
 MAX_POS_LEN = 4096
 PI_LEVEL = 2
@@ -23,7 +24,9 @@ print(f'Generation using model: {CHECKPOINT_SUFFIX}')
 
 m = custom_lm.models[0]
 # TODO: make this a flag of some sort?
-# m.cuda()
+#device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+if torch.cuda.is_available():
+    m.cuda()
 m.eval()
 
 
