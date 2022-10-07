@@ -15,6 +15,10 @@ setup_osx:
 	pip install torch==1.12.1
 	pip install -r requirements.txt
 
+bpe_exe:
+	cd src/musicBPE; \
+	g++ -std=c++11 -pthread -O3 fastBPE/main.cc -IfastBPE -o ../../music_bpe_exec
+
 ####################################################
 
 test_run:
